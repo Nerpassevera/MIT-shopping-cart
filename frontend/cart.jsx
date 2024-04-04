@@ -9,7 +9,6 @@ const products = [
 const Cart = (props) => {
   const { Card, Accordion, Button } = ReactBootstrap;
   let data = props.location.data ? props.location.data : products;
-  console.log(`data:${JSON.stringify(data)}`);
 
   return <Accordion defaultActiveKey="0">{list}</Accordion>;
 };
@@ -96,20 +95,16 @@ const Products = (props) => {
     let name = e.target.name;
     let item = items.filter((item) => item.name == name);
     if (item[0].instock > 0) {
-      console.log(`add to Cart `, item);
       item[0].instock--;
       setCart([...cart, ...item]);
-      console.log("🚀 ~ addToCart ~ item.instock:", item[0].instock);
     }
 
     //doFetch(query);
   };
   const deleteCartItem = (index) => {
-    console.log(index, " - index");
     let newCart = cart.filter((item, i) => index != i);
     let updateItem = items.find((item) => cart[index].name === item.name);
     updateItem.instock++;
-    console.log("🚀 ~ deleteCartItem ~ updateItem:", updateItem);
     setCart(newCart);
   };
   const photos = [
